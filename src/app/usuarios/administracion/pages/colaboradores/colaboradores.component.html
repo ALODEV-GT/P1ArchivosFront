@@ -1,1 +1,51 @@
-<p>ADMINISTRACION: COLABORADORES PAGE</p>
+<div class="bg-info d-flex justify-content-center align-items-center vh-100">
+    <div>
+        <table class="table table-dark table-striped-columns">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Brayan Alonzo</td>
+                    <td>Administrador</td>
+                    <td><button>Editar</button> <button>Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label"><b>Nombre:</b></label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+        </div><br>
+        <div>
+            <label for="exampleFormControlInput1" class="form-label"><b>Contraseña:</b></label>
+            <input type="password" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <br>
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Rol
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" target="_blank">Administrador</a></li>
+                    <li><a href="#" target="_blank">Vendedor</a></li>
+                    <li><a href="#" target="_blank">Inventario</a></li>
+                    <li><a href="#" target="_blank">Bodeguero</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <br>
+            <button>Agregar Empleado</button>
+        </div>
+    </div>
+</div>

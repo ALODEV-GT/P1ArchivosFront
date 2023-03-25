@@ -4,6 +4,9 @@ import { LoginService } from '../services/login.service';
 import { EmpleadoDTO } from '../../../control/EmpleadoDTO';
 import { PermisoDTO } from '../../../control/PermisoDTO';
 import { Router } from '@angular/router';
+import { RolEmpleadoDTO } from '../../../control/RolEmpleadoDTO';
+import { EstablecimientoDTO } from '../../../control/EstablecimientoDTO';
+import { TipoEstablecimientoDTO } from '../../../control/TipoEstablecimientoDTO';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +36,10 @@ export class LoginComponent implements OnInit {
   autenticar() {
     const usuario: string = this.miFormulario.get('usuario')?.value;
     const contrasena: string = this.miFormulario.get('contrasena')?.value;
-    let empleado: EmpleadoDTO = new EmpleadoDTO(0, 0, usuario, contrasena, "");
+    let rol: RolEmpleadoDTO = new RolEmpleadoDTO(0, "");
+    let tipoEst: TipoEstablecimientoDTO = new TipoEstablecimientoDTO(0, "");
+    let establecimiento: EstablecimientoDTO = new EstablecimientoDTO(0, 0, "", "", tipoEst);
+    let empleado: EmpleadoDTO = new EmpleadoDTO(0, 0, usuario, contrasena, "", rol, establecimiento);
     this.loginService.validarUsuario(empleado).subscribe((resp: PermisoDTO) => {
       if (resp.rol.idRolEmpleado == 0) { //Si idRolEmpleado es 0, es porque no existe el usuario
         this.existe = false;
