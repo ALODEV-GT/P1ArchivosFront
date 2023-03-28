@@ -6,6 +6,8 @@ import { VentasRoutingModule } from './ventas-routing.module';
 import { VenderComponent } from './pages/vender/vender.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     VentasRoutingModule
   ],
   exports: [

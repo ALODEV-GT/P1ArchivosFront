@@ -17,8 +17,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   validarUsuario(usuario: EmpleadoDTO) {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<PermisoDTO>(this.baseUrl, usuario,{headers: headers});
+    return this.http.post<PermisoDTO>(this.baseUrl, usuario);
   }
 
   public get empleado(): EmpleadoDTO {

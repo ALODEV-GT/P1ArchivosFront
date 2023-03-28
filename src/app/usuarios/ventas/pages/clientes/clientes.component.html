@@ -9,26 +9,71 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>2</td>
-                    <td>Producto 1</td>
-                    <td><button>Editar</button> <button>Eliminar</button></td>
+                <tr *ngFor="let cliente of clientes">
+                    <td> {{cliente.nit}} </td>
+                    <td> {{cliente.nombre}} </td>
+                    <td><button (click)="openModal(cliente.nit, cliente.nombre)">Editar</button> <button
+                            (click)="eliminar(cliente.nit)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
 
         <hr>
-        <div>
-            <label for="exampleFormControlInput1" class="form-label"><b>NIT:</b></label>
-            <input type="email" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div>
-            <label for="exampleFormControlInput1" class="form-label"><b>Nombre:</b></label>
-            <input type="email" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div>
-            <br>
-            <button>Agregar Cliente</button>
+        <form (ngSubmit)="validar()" [formGroup]="miFormulario">
+            <div>
+                <label for="exampleFormControlInput1" class="form-label"><b>NIT:</b></label>
+                <input formControlName="nit" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div>
+                <label for="exampleFormControlInput1" class="form-label"><b>Nombre:</b></label>
+                <input formControlName="nombre" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div class="text-center mt-4 fw-semibold error" *ngIf="existe">
+                Este cliente ya esta registrado
+            </div>
+            <div class="text-center mt-4 fw-semibold error" *ngIf="agregado">
+                Cliente agregado correctamente
+            </div>
+            <div>
+                <br>
+                <button>Agregar Cliente</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <label for="exampleFormControlInput1" class="form-label"><b>NIT:</b></label>
+                    <input disabled [value]="nit" class="form-control">
+                </div>
+                <div>
+                    <label name="nombre" for="exampleFormControlInput1" class="form-label"><b>Nombre:</b></label>
+                    <input name="nombre" [(ngModel)]="nombre" class="form-control">
+                </div>
+            </div>
+
+            <div class="text-center mt-4 fw-semibold error" *ngIf="errorActualizar">
+                Ocurrio un error al actualizar
+            </div>
+
+            <div class="text-center mt-4 fw-semibold error" *ngIf="mostrarMensaje">
+                Se ha acutalizado el cliente
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editar()">Guardar</button>
+            </div>
         </div>
     </div>
 </div>
