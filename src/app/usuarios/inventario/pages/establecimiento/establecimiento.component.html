@@ -1,47 +1,41 @@
 <div class="bg-info d-flex justify-content-center align-items-center vh-100">
+
     <div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {{btnNameActive}}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li *ngFor="let establecimiento of establecimientos">
+                    <button class="dropdown-item"
+                        (click)="listarProductos(establecimiento)">{{establecimiento.nombre}}</button>
+                </li>
+            </ul>
+        </div>
+        <br>
         <table class="table table-dark table-striped-columns">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Agregar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Producto 1</td>
-                    <td>$15.62</td>
-                    <td><button>Agregar</button></td>
+                <tr *ngFor="let producto of productos | paginate: { itemsPerPage: 10, currentPage: page }">
+                    <td>{{producto.idProducto}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td><button *ngIf="!establecimientoLocal" (click)="transferir(producto)"> Agregar </button></td>
                 </tr>
             </tbody>
         </table>
-
-        <hr>
-
-        <div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Tipo de producto
-                </button>
-                <ul class="dropdown-menu">
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nuevo">
-                    <li><a href="#" target="_blank">TIPO 1</a></li>
-                    <li><a href="#" target="_blank">TIPO 2</a></li>
-                    <li><a href="#" target="_blank">TIPO 3</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <label for="exampleFormControlInput1" class="form-label"><b>Precio:</b></label>
-            <input type="email" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div>
-            <br>
-            <button>Ingresar producto</button>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+            nextLabel="Siguiente"></pagination-controls>
+        <div *ngIf="mostarMensaje">
+            <strong>{{mensaje}}</strong> 
         </div>
     </div>
 </div>

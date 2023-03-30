@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let cliente of clientes">
+                <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: 10, currentPage: page }">
                     <td> {{cliente.nit}} </td>
                     <td> {{cliente.nombre}} </td>
                     <td><button (click)="openModal(cliente.nit, cliente.nombre)">Editar</button> <button
@@ -17,7 +17,7 @@
                 </tr>
             </tbody>
         </table>
-
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
         <hr>
         <form (ngSubmit)="validar()" [formGroup]="miFormulario">
             <div>

@@ -16,6 +16,9 @@ import { ProductosTopIngresosComponent } from './reportes/productos-top-ingresos
 import { ProductosTopVentasSucursalComponent } from './reportes/productos-top-ventas-sucursal/productos-top-ventas-sucursal.component';
 import { ProductosTopIngresosSucursalComponent } from './reportes/productos-top-ingresos-sucursal/productos-top-ingresos-sucursal.component';
 import { ListadoComponent } from './reportes/listado/listado.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -39,7 +42,10 @@ import { ListadoComponent } from './reportes/listado/listado.component';
   ],
   imports: [
     CommonModule,
-    AdministracionRoutingModule
+    AdministracionRoutingModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
   ]

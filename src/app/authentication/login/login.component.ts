@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     let rol: RolEmpleadoDTO = new RolEmpleadoDTO(0, "");
     let tipoEst: TipoEstablecimientoDTO = new TipoEstablecimientoDTO(0, "");
     let establecimiento: EstablecimientoDTO = new EstablecimientoDTO(0, 0, "", "", tipoEst);
-    let empleado: EmpleadoDTO = new EmpleadoDTO(0, 0, usuario, contrasena, "", rol, establecimiento);
+    let empleado: EmpleadoDTO = new EmpleadoDTO(0, 0, 0, usuario, contrasena, "", rol, establecimiento);
     this.loginService.validarUsuario(empleado).subscribe((resp: PermisoDTO) => {
       if (resp.rol.idRolEmpleado == 0) { //Si idRolEmpleado es 0, es porque no existe el usuario
         this.existe = false;
@@ -47,6 +47,9 @@ export class LoginComponent implements OnInit {
         //Guardar el usuario y sus permisos
         this.loginService.empleado = empleado;
         this.loginService.permisos = resp;
+        console.log(resp);
+
+        localStorage.setItem('permiso', JSON.stringify(resp));
 
         //Direccionar a las paginas
         switch (resp.rol.idRolEmpleado) {

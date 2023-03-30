@@ -10,38 +10,74 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Producto 1</td>
-                    <td>$15.62</td>
-                    <td><button>Editar</button></td>
+                <tr *ngFor="let producto of productos | paginate: { itemsPerPage: 10, currentPage: page }">
+                    <td>{{producto.idProducto}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td><button (click)="openModal(producto)">Editar</button></td>
                 </tr>
             </tbody>
         </table>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+            nextLabel="Siguiente"></pagination-controls>
 
         <hr>
-
-        <div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Tipo de producto
-                </button>
-                <ul class="dropdown-menu">
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nuevo">
-                    <li><a href="#" target="_blank">TIPO 1</a></li>
-                    <li><a href="#" target="_blank">TIPO 2</a></li>
-                    <li><a href="#" target="_blank">TIPO 3</a></li>
-                </ul>
+        <form (ngSubmit)="agregar()" [formGroup]="miFormulario">
+            <div>
+                <label for="exampleFormControlInput1" class="form-label"><b>Nombre:</b></label>
+                <input formControlName="nombre" class="form-control" id="exampleFormControlInput1">
             </div>
-        </div>
-        <div>
-            <label for="exampleFormControlInput1" class="form-label"><b>Precio:</b></label>
-            <input type="email" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div>
-            <br>
-            <button>Ingresar producto</button>
+            <div>
+                <label for="exampleFormControlInput1" class="form-label"><b>Precio:</b></label>
+                <input formControlName="precio" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div>
+                <br>
+                <button>Ingresar producto</button>
+            </div>
+            <div *ngIf="mostrarMensaje">
+                {{mensaje}}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <label for="exampleFormControlInput1" class="form-label"><b>Id producto:</b></label>
+                    <input disabled [value]="idProducto" class="form-control">
+                </div>
+                <div>
+                    <label name="nombre" for="exampleFormControlInput1" class="form-label"><b>Nombre:</b></label>
+                    <input name="nombre" [(ngModel)]="nombre" class="form-control">
+                </div>
+                <div>
+                    <label name="precio" for="exampleFormControlInput1" class="form-label"><b>Precio:</b></label>
+                    <input name="precio" [(ngModel)]="precio" class="form-control">
+                </div>
+            </div>
+
+            <div class="text-center mt-4 fw-semibold error" *ngIf="errorActualizar">
+                Ocurrio un error al actualizar
+            </div>
+
+            <div class="text-center mt-4 fw-semibold error" *ngIf="mostrarMensaje">
+                Se ha acutalizado el cliente
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editar()">Guardar</button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductoDTO } from '../../../../../control/ProductoDTO';
 
 @Component({
   selector: 'app-inicio',

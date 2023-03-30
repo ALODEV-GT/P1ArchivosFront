@@ -3,30 +3,41 @@
         <table class="table table-dark table-striped-columns">
             <thead>
                 <tr>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Producto</th>
                     <th scope="col">Precio U</th>
-                    <th scope="col">Total</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let producto of productos | paginate: { itemsPerPage: 10, currentPage: page }">
                     <td>
-                        <button>-</button>
-                        2
-                        <button>+</button>
+                        {{producto.idProducto}}
                     </td>
-                    <td>Producto 1</td>
-                    <td>$15.3</td>
-                    <td>$30.6</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td><button (click)="eliminar(producto)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
-
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        <div style="font-size: 21px;">
+            <strong >Total: ${{total}}</strong> 
+        </div>
+        <div style="font-size: 21px;">
+            <strong >Descuento {{descuentoPorc}}%: ${{descuento}}</strong> 
+        </div>
+        <div style="font-size: 21px;">
+            <strong >Total final: ${{totalFinal}}</strong> 
+        </div>
         <div>
             <label for="exampleFormControlInput1" class="form-label"><b>NIT:</b></label>
-            <input type="email" class="form-control" id="exampleFormControlInput1">
-            <button>Vender</button>
+            <input [(ngModel)]="nit" type="email" class="form-control" id="exampleFormControlInput1">
+            <br>
+            <button (click)="realizarVenta()">Vender</button>
+        </div>
+        <div *ngIf="error" style="color: brown;">
+            <strong>{{mensajeError}}</strong>
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ export class EmpleadoDTO {
     constructor(
         public idEmpleado: number,
         public idRolEmpleado: number,
+        public idEstablecimiento: number,
         public usuario: string,
         public contrasena: string,
         public nombre: string,

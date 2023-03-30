@@ -16,6 +16,9 @@ export class ClientesComponent implements OnInit {
   agregado: boolean = false;
   clientes!: ClienteDTO[];
 
+  //Pagination
+  public page!: number;
+
   //Modal
   formModal: any;
   nitAux: string = "";
