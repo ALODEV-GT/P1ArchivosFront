@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/usuarios/ventas/services/producto.service';
 import { ProductoDTO } from 'src/control/ProductoDTO';
 import { EstablecimientoDTO } from '../../../../../control/EstablecimientoDTO';
-import { TipoEstablecimientoDTO } from '../../../../../control/TipoEstablecimientoDTO';
 import { EstablecimientoService } from '../../services/establecimiento.service';
 import { LoginService } from '../../../../authentication/services/login.service';
 import { PermisoDTO } from 'src/control/PermisoDTO';

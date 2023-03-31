@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { PrimerReporte } from '../../../../control/reportesBean/PrimerReporte';
+import { SegundoReporte } from '../../../../control/reportesBean/SegundoReporte';
+import { TercerReporte } from '../../../../control/reportesBean/TercerReporte';
+import { CuartoReporte } from '../../../../control/reportesBean/CuartoReporte';
+import { QuintoReporte } from '../../../../control/reportesBean/QuintoReporte';
+import { SextoReporte } from '../../../../control/reportesBean/SextoReporte';
+import { OctavoReporte } from '../../../../control/reportesBean/OctavoReporte';
+import { NovenoReporte } from '../../../../control/reportesBean/NovenoReporte';
+import { DecimoReporte } from '../../../../control/reportesBean/DecimoReporte';
+import { SeptimoReporte } from '../../../../control/reportesBean/SeptimoReporte';
 
 @Injectable({
   providedIn: 'root'
@@ -11,43 +21,43 @@ export class ReportesService {
 
   constructor(private http: HttpClient) { }
 
-  masVendido(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/mas-vendido");
+  masVendido(): Observable<PrimerReporte[]> {
+    return this.http.get<PrimerReporte[]>(this.baseUrl + "/mas-vendido");
   }
 
-  clientesTop(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/clientes-top");
+  clientesTop(): Observable<SegundoReporte[]> {
+    return this.http.get<SegundoReporte[]>(this.baseUrl + "/clientes-top");
   }
 
-  sucursalesTopVentas(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/sucursales-top-ventas");
+  sucursalesTopVentas(): Observable<TercerReporte[]> {
+    return this.http.get<TercerReporte[]>(this.baseUrl + "/sucursales-top-ventas");
   }
 
-  sucursalesTopIngresos(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/sucursales-top-ingresos");
+  sucursalesTopIngresos(): Observable<CuartoReporte[]> {
+    return this.http.get<CuartoReporte[]>(this.baseUrl + "/sucursales-top-ingresos");
   }
 
-  empleadosTopVentas(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/empleado-top-ventas");
+  empleadosTopVentas(): Observable<QuintoReporte[]> {
+    return this.http.get<QuintoReporte[]>(this.baseUrl + "/empleado-top-ventas");
   }
 
-  empleadosTopIngresos(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/empleado-top-ingresos");
+  empleadosTopIngresos(): Observable<SextoReporte[]> {
+    return this.http.get<SextoReporte[]>(this.baseUrl + "/empleado-top-ingresos");
   }
 
-  productosTopVentas(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/productos-top-ventas");
+  productosTopVentas(): Observable<SeptimoReporte[]> {
+    return this.http.get<SeptimoReporte[]>(this.baseUrl + "/productos-top-ventas");
   }
 
-  productosTopIngresos(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/productos-top-ingresos");
+  productosTopIngresos(): Observable<OctavoReporte[]> {
+    return this.http.get<OctavoReporte[]>(this.baseUrl + "/productos-top-ingresos");
   }
 
-  productosTopVentasSucursal(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/productos-top-ventas-sucursal");
+  productosTopVentasSucursal(idEstablecimiento: number): Observable<NovenoReporte[]> {
+    return this.http.get<NovenoReporte[]>(this.baseUrl + "/productos-top-ventas-sucursal/" + idEstablecimiento);
   }
 
-  productosTopIngresosSucursal(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/productos-top-ingresos-sucursal");
+  productosTopIngresosSucursal(idEstablecimiento: number): Observable<DecimoReporte[]> {
+    return this.http.get<DecimoReporte[]>(this.baseUrl + "/productos-top-ingresos-sucursal/" + idEstablecimiento);
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportesService } from '../../services/reportes.service';
+import { SeptimoReporte } from '../../../../../control/reportesBean/SeptimoReporte';
 
 @Component({
   selector: 'app-productos-top-ventas',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductosTopVentasComponent implements OnInit {
 
-  constructor() { }
+  registros!: SeptimoReporte[];
+
+  //Paginacion
+  public page!: number;
+  
+  constructor(private reportesService: ReportesService) {
+    this.reportesService.productosTopVentas().subscribe((res: SeptimoReporte[]) => {
+      this.registros = res;
+    });
+   }
 
   ngOnInit(): void {
   }
